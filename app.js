@@ -67,7 +67,7 @@ var userList = [];
                             groupMembers = response.members.length;
                             console.log(groupMembers);
                         }
-                        res.render('index', {RC_Logo: req.query.logo || process.env.APP_LOGO, RC_Community: req.query.name || process.env.GLIP_GROUP_NAME, RC_Total_members: groupMembers, RC_groupId: req.query.id || process.env.GLIP_GROUP_ID});
+                        res.render('index', {RC_Logo: req.query.logo || process.env.APP_LOGO || "/assets/glip.png", RC_Community: req.query.name || process.env.GLIP_GROUP_NAME, RC_Total_members: groupMembers, RC_groupId: req.query.id || process.env.GLIP_GROUP_ID});
                     })
                     .catch(function(e) {
                         console.log('INVITE USER DID NOT WORK');
