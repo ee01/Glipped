@@ -27,7 +27,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 if(!module.parent){ app.listen(process.env.PORT || port); }
 
 console.log("Application started. Listening on port:" + port);
-
+console.log(location.search());
 
 var ringcentral = require('ringcentral');
 
