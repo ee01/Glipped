@@ -27,7 +27,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 if(!module.parent){ app.listen(process.env.PORT || port); }
 
 console.log("Application started. Listening on port:" + port);
-console.log(location.search());
+
 
 var ringcentral = require('ringcentral');
 
@@ -51,6 +51,7 @@ var userList = [];
     app.get('/', function (req, res) {
 
         console.log('Insdei');
+        console.log(req.query.id);
         rcsdk.platform()
             .login({
                 username: process.env.RC_USERNAME,
@@ -60,14 +61,14 @@ var userList = [];
             .then(function(response) {
                 console.log('Logged in to platform');
                 return rcsdk.platform()
-                    .get('/glip/groups/' + process.env.GLIP_GROUP_ID)
+                    .get('/glip/groups/' + (req.query.groupid || process.env.GLIP_GROUP_ID))
                     .then(function(apiResponse) {
                         var response = apiResponse.json();
                         if(response.members){
                             groupMembers = response.members.length;
                             console.log(groupMembers);
                         }
-                        res.render('index', {RC_Logo: process.env.APP_LOGO, RC_Community: process.env.GLIP_GROUP_NAME, RC_Total_members: groupMembers, RC_groupId: process.env.GLIP_GROUP_ID});
+                        res.render('index', {RC_Logo: req.query.logo || process.env.APP_LOGO, RC_Community: req.query.name || process.env.GLIP_GROUP_NAME, RC_Total_members: groupMembers, RC_groupId: req.query.id || process.env.GLIP_GROUP_ID});
                     })
                     .catch(function(e) {
                         console.log('INVITE USER DID NOT WORK');
