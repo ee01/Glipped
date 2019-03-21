@@ -74,6 +74,8 @@ npm test
 
 ** Application would be started on port 8080 ( http://localhost:8080 )
 
+Use URL params to customize group id, group name or APP logo ( http://localhost:8080?id=666&name=TeamX&logo=http... )
+
 ### SVG
 
 [![Chat: RingCentral](https://img.shields.io/badge/Chat-RingCentral-orange.svg)](http://localhost:8080/)
@@ -93,7 +95,11 @@ Done in Markdown this looks like:
 Point to `http://localhost:8080/`.
 
 **Note:** the image for the logo of the landing page
-is retrieved from the `RC_LOGO` parameter specified in the .ENV file. If you do not provide the `URL` in the `.ENV` file, it won't be shown.
+is retrieved from the `APP_LOGO` parameter specified in the .ENV file. If you do not provide the `URL` in the `.ENV` file, it won't be shown.
+
+If point to `http://localhost:8080?id=666&name=TeamX&logo=http...`
+
+**Note:** the group id / group name / image for the logo of the landing page is retrieved from URL parameters first.
 
 
 ## Dependencies
