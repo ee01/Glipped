@@ -51,7 +51,6 @@ var userList = [];
     app.get('/', function (req, res) {
 
         console.log('Insdei');
-        console.log(req.query.id);
         rcsdk.platform()
             .login({
                 username: process.env.RC_USERNAME,
@@ -61,7 +60,7 @@ var userList = [];
             .then(function(response) {
                 console.log('Logged in to platform');
                 return rcsdk.platform()
-                    .get('/glip/groups/' + (req.query.groupid || process.env.GLIP_GROUP_ID))
+                    .get('/glip/groups/' + (req.query.id || process.env.GLIP_GROUP_ID))
                     .then(function(apiResponse) {
                         var response = apiResponse.json();
                         if(response.members){
